@@ -1,7 +1,5 @@
-import re
 
 from database.DB_connect import DBConnect
-from model.director import Director
 
 
 class DAO:
