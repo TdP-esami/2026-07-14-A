@@ -125,3 +125,16 @@ class Controller:
             self._view.create_alert(f"Errore nella ricerca del gruppo di registi: {ex}")
 
 
+    def _fillDDDirectors(self):
+        self._view._ddDirector.options.clear()
+        all_directors = self._model.getAllDirectors()
+
+        directorOptions = list(
+            map(lambda d: ft.dropdown.Option(data=d, key=str(d), on_click=self._choiceDirector), all_directors)
+        )
+        self._view._ddDirector.options = directorOptions
+
+        self._view.update_page()
+
+    def _choiceDirector(self, e):
+        self._directorValue = e.control.data
