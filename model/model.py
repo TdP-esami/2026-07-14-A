@@ -36,7 +36,6 @@ class Model:
 
 
     def getDirectorWithMaxDegree(self):
-        """Ritorna (regista, grado) del regista con grado (numero di archi) maggiore."""
         if len(self._graph.nodes) == 0:
             return None, 0
 
@@ -49,7 +48,6 @@ class Model:
         return best_director, max_degree
 
     def getDirectorWithMaxWeightSum(self):
-        """Ritorna (regista, somma pesi) del regista con somma dei pesi degli archi incidenti maggiore."""
         if len(self._graph.nodes) == 0:
             return None, 0
 
@@ -66,11 +64,6 @@ class Model:
         return best_director, max_sum
 
     def getTop5Edges(self):
-        """
-        Ritorna i 5 archi di peso maggiore come lista di tuple (r1, r2, peso), ordinati in
-        modo decrescente di peso; in caso di parità, ordinamento alfabetico sul nome del
-        primo regista e poi del secondo.
-        """
         if len(self._graph.edges) == 0:
             return []
 
@@ -87,16 +80,6 @@ class Model:
         return edges_sorted[:5]
 
     def getBestGroup(self, starting_director, N):
-        """
-        Cerco un insieme di esattamente N registi tale che:
-        - il primo regista è quello scelto dall'utente (starting_director);
-        - ogni regista aggiunto dopo il primo è adiacente ad almeno uno dei registi già
-          presenti nel gruppo;
-        - non possono comparire nel gruppo due registi collegati da un arco di peso 1;
-        - tra tutte le soluzioni ammissibili si massimizza l'incasso complessivo
-          (worlwide_gross_income) dei film diretti dai registi selezionati.
-        Ritorna (bestGroup, bestGrossIncome).
-        """
         if starting_director not in self._graph.nodes:
             return [], 0.0
 
